@@ -1,5 +1,6 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   mode: "production",
@@ -14,17 +15,22 @@ module.exports = {
     filename: "[name].[hash].bundle.js"
   },
   module: {
-    rules: [{
-      test: /\.jsx?$/,
-      loader: "babel-loader",
-      include: /src/,
-      exclude: /node_modules/,
-      query: {
-        presets: ["@babel/preset-react"]
+    rules: [
+      {
+        test: /\.jsx?$/,
+        loader: "babel-loader",
+        include: /src/,
+        exclude: /node_modules/,
+        query: {
+          presets: ["@babel/preset-react"]
+        }
       }
-    }]
+    ]
   },
   plugins: [
+    new CleanWebpackPlugin({
+      cleanAfterEveryBuildPatterns: ["./build"]
+    }),
     new HtmlWebpackPlugin({
       template: "template.html"
     })
