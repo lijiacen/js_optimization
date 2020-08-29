@@ -39,6 +39,19 @@
     }
     document.addEventListener(vEvent, visibilityChanged, false);
   </script>
+  <script>
+    //监听网络连接对象
+    let connection = navigator.connection || navigator.mozConnection ||
+      navigator.webkitConnection;
+    let type = connection.effectiveType;
+
+    function updateConnectionStatus() {
+      console.log(type, connection.effectiveType)
+    }
+
+    //监听change事件
+    connection.addEventListener("change", updateConnectionStatus);
+  </script>
 </body>
 
 </html>
