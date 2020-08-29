@@ -1,7 +1,16 @@
 <html>
-  <head> </head>
 
-  <body>
-    <div id="main"></div>
-  </body>
+<head> </head>
+
+<body>
+  <div id="main"></div>
+  <script>
+    window.addEventListener("load", (e) => {
+      let timing = performance.getEntriesByType('navigation')[0];
+      //请求发出到可以交互
+      let tti = timing.domInteractive - timing.fetchStart;
+    })
+  </script>
+</body>
+
 </html>
