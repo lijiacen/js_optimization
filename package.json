@@ -23,11 +23,13 @@
     "koa-compress": "^5.0.1",
     "koa-static": "^5.0.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
     "@babel/preset-react": "^7.10.4",
+    "@material-ui/core": "^4.11.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^4.3.0",
