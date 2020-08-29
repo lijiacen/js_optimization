@@ -12,7 +12,7 @@
     })
   </script>
   <script>
-    //通过PerformanceObserver得到所有的 long task对象
+    //通过PerformanceObserver得到所有的longtask对象
     let observer = new PerformanceObserver(list => {
       for (const entry of list.getEntries()) {
         console.log(entry)
