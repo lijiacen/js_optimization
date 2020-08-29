@@ -23,6 +23,22 @@
       entryTypes: ['longtask']
     })
   </script>
+  <script>
+    //判断用户是否在看当前页面
+    let vEvent = "visibilitychange";
+    if (document.webkitHidden != undefined) {
+      vEvent = "webkitvisibilitychange";
+    }
+
+    function visibilityChanged() {
+      if (document.hidden || document.webkitHidden) {
+        console.log('hidden')
+      } else {
+        console.log('show')
+      }
+    }
+    document.addEventListener(vEvent, visibilityChanged, false);
+  </script>
 </body>
 
 </html>

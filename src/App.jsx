@@ -3,7 +3,7 @@ import React from "react";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.calculatePi(4500);
+    //this.calculatePi(4500);
   }
 
   calculatePi(duration) {
@@ -14,7 +14,11 @@ class App extends React.Component {
   }
 
   render() {
-    return <div>hello react</div>;
+    return (
+      <>
+        <div>hello react</div>
+      </>
+    );
   }
 }
 
