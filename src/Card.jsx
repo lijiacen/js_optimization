@@ -36,7 +36,7 @@ class MyCard extends React.Component {
     this.spin = this.spin.bind(this);
   }
   spin() {
-    this.setState({ spinning: true });
+    // this.setState({ spinning: true });
   }
 
   render() {
