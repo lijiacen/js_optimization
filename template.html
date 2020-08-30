@@ -1,21 +1,28 @@
 <html>
+  <head> </head>
 
-<head> </head>
-
-<body>
-  <div id="main"></div>
-  <script>
-    //重新修改宽度导致回流
-    let cards = document.getElementsByClassName("MuiCardMedia-root")
-    const update = (timestamp) => {
-      for (let i = 0; i < cards.length; i++) {
-        cards[i].style.width = ((Math.sin(cards[i].offsetTop + timestamp / 1000) + 1) * 500) + 'px'
-      }
-      window.requestAnimationFrame(update)
-    }
-    window.requestAnimationFrame(update)
-  </script>
-  <!-- <script>
+  <body>
+    <div id="main"></div>
+    <script>
+      //重新修改宽度导致回流
+      let cards = document.getElementsByClassName("MuiCardMedia-root");
+      const update = (timestamp) => {
+        for (let i = 0; i < cards.length; i++) {
+          //使用fastdom读写分离
+          fastdom.measure(() => {
+            let top = cards[i].offsetTop;
+            fastdom.mutate(() => {
+              cards[i].style.width =
+                (Math.sin(top + timestamp / 1000) + 1) * 500 + "px";
+            });
+          });
+        }
+        window.requestAnimationFrame(update);
+      };
+      window.requestAnimationFrame(update);
+    </script>
+    <!-- <script src="./fastdom.min.js"></script> -->
+    <!-- <script>
     window.addEventListener("load", (e) => {
       let timing = performance.getEntriesByType('navigation')[0];
       //请求发出到可以交互
@@ -63,6 +70,5 @@
     //监听change事件
     connection.addEventListener("change", updateConnectionStatus);
   </script> -->
-</body>
-
+  </body>
 </html>
