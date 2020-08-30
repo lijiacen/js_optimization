@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/lijiacen/js_optimization#readme",
   "dependencies": {
+    "fastdom": "^1.0.9",
     "koa": "^2.13.0",
     "koa-compress": "^5.0.1",
     "koa-static": "^5.0.0",
