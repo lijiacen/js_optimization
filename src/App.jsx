@@ -3,7 +3,7 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./Header.jsx";
 import Home from "./Home.jsx";
-
+import eagerParsing from "../js_performance/eager_parsing";
 const primary = "#30929b";
 
 const theme = createMuiTheme({
@@ -23,6 +23,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     // this.calculatePi(1500); // 测试密集计算对性能的影响
+    eagerParsing(); //饥饿解析例子
   }
 
   calculatePi(duration) {
