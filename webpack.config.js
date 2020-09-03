@@ -1,6 +1,8 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const {
+  CleanWebpackPlugin
+} = require("clean-webpack-plugin");
 
 module.exports = {
   mode: "production",
@@ -8,15 +10,15 @@ module.exports = {
   //   port: 3000
   // },
   entry: {
-    app: "./src/index.jsx"
+    app: "./src/index.jsx",
+    eager_parsing: './js_performance/eager_parsing'
   },
   output: {
     path: `${__dirname}/build`,
     filename: "[name].[hash].bundle.js"
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.jsx?$/,
         loader: "babel-loader",
         include: /src/,
@@ -27,8 +29,7 @@ module.exports = {
       },
       {
         test: /(\.css$)/,
-        use: [
-          {
+        use: [{
             loader: "style-loader"
           },
           {
