@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "./animation.css";
 
 const styles = (theme) => ({
@@ -49,13 +50,18 @@ class MyCard extends React.Component {
       <div className={this.props.classes.root}>
         {/*添加点击事件，触发动画*/}
         <MaterialUICard className={cardClass} onClick={this.spin}>
-          <CardMedia
+          {/* <CardMedia
             component="img"
             className={this.props.media}
             image={this.props.image}
             title={this.props.title}
             height="200"
-          />
+          /> */}
+          <LazyLoadImage
+            className={this.props.classes.media}
+            src={this.props.image}
+            effect="blur"
+          ></LazyLoadImage>
           <CardContent>
             <Typography gutterBottom variant="h6" component="h2">
               {this.props.title}
