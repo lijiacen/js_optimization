@@ -16,17 +16,19 @@ const styles = (theme) => ({
 class Home extends React.Component {
   render() {
     let cards = [];
-    cards.push(
-      model.map((panel) => (
-        <Card
-          key={panel.name}
-          image={panel.image}
-          title={panel.name}
-          route={panel.route}
-          description={panel.body}
-        />
-      ))
-    );
+    for (let index = 0; index < 100; index++) {
+      cards.push(
+        model.map((panel) => (
+          <Card
+            key={panel.name}
+            image={panel.image + "?random=" + Math.random() * 10000000}
+            title={panel.name}
+            route={panel.route}
+            description={panel.body}
+          />
+        ))
+      );
+    }
     return <main className={this.props.classes.root}>{cards}</main>;
   }
 }

@@ -10,7 +10,8 @@ const model = [{
     },
     {
         name: 'Corney的飞行纸盒',
-        image: `https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592014377244&di=da390556e384c148a63692fee68b6251&imgtype=0&src=http%3A%2F%2Fpic4.zhimg.com%2Fv2-0d4d16b3aa0e23d656bc1a94d7dc7ea7_b.jpg`,
+        //  image: `https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592014377244&di=da390556e384c148a63692fee68b6251&imgtype=0&src=http%3A%2F%2Fpic4.zhimg.com%2Fv2-0d4d16b3aa0e23d656bc1a94d7dc7ea7_b.jpg`,
+        image: `http://www.ichong123.com/uploads/2014/08/1263.jpg`,
         body: '时尚折边',
     },
     {
