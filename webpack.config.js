@@ -15,7 +15,8 @@ module.exports = {
   },
   output: {
     path: `${__dirname}/build`,
-    filename: "[name].[hash].bundle.js"
+    filename: "[name].[hash].bundle.js",
+    chunkFilename: "[name].[chunkhash:8].bundle.js" //按需加载拆分出的文件，打出的包
   },
   module: {
     noParse: /lodash/, //配置不需要打包的库
