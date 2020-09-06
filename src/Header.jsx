@@ -39,6 +39,15 @@ class Header extends React.Component {
             >
               Dereck's Backyard Sales!
             </Typography>
+            <Typography
+              variant="h6"
+              color="inherit"
+              className={this.props.classes.about}
+            >
+              <Link className={this.props.classes.aboutLink} to="/about">
+                About
+              </Link>
+            </Typography>
           </Toolbar>
         </AppBar>
       </div>

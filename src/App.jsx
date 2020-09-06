@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./Header.jsx";
 import Home from "./Home.jsx";
 import eagerParsing from "../js_performance/eager_parsing";
+import loadable from "@loadable/component";
 const primary = "#30929b";
 
 const theme = createMuiTheme({
@@ -18,7 +19,10 @@ const theme = createMuiTheme({
     }
   }
 });
-
+// 使用React-Loadable动态加载组件
+const LoadableAbout = loadable(() => import("./About.jsx"), {
+  fallback: "<div>loading...</div>"
+});
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -36,12 +40,15 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <MuiThemeProvider theme={theme}>
-          <div>
-            <Header />
-            <Route exact path="/" component={Home} />
-          </div>
-        </MuiThemeProvider>
+        <Switch>
+          <MuiThemeProvider theme={theme}>
+            <div>
+              <Header />
+              <Route exact path="/" component={Home} />
+              <Route path="/about" component={LoadableAbout} />
+            </div>
+          </MuiThemeProvider>
+        </Switch>
       </Router>
     );
   }
