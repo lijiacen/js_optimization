@@ -5,13 +5,10 @@ const {
 } = require("clean-webpack-plugin");
 
 module.exports = {
-  mode: "production",
-  // devServer: {
-  //   port: 3000
-  // },
+  mode: "production", //mode production or development 各自有默认插件;production自动tree shaking
   entry: {
     app: "./src/index.jsx",
-    eager_parsing: './js_performance/eager_parsing'
+    eager_parsing: "./js_performance/eager_parsing"
   },
   output: {
     path: `${__dirname}/build`,
