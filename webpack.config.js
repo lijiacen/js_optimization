@@ -1,5 +1,6 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const DllReferencePlugin = require('webpack/lib/DllReferencePlugin');
 const {
   CleanWebpackPlugin
 } = require("clean-webpack-plugin");
@@ -15,6 +16,7 @@ module.exports = {
     filename: "[name].[hash].bundle.js"
   },
   module: {
+    noParse: /lodash/, //配置不需要打包的库
     rules: [{
         test: /\.jsx?$/,
         loader: "babel-loader",
@@ -45,6 +47,10 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "template.html"
+    }),
+    // /* 动态链接库引用 */
+    new DllReferencePlugin({
+      manifest: require(`${__dirname}/dll/react.manifest.json`)
     })
   ]
 };
