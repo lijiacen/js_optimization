@@ -1,9 +1,12 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // const DllReferencePlugin = require('webpack/lib/DllReferencePlugin');
-const {
-  CleanWebpackPlugin
-} = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //提取css
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"); //压缩优化
+
+const isProduction = process.env.NODE_ENV === "production";
 
 module.exports = {
   mode: "production", //mode production or development 各自有默认插件;production自动tree shaking
@@ -16,7 +19,8 @@ module.exports = {
   },
   module: {
     noParse: /lodash/, //配置不需要打包的库
-    rules: [{
+    rules: [
+      {
         test: /\.jsx?$/,
         loader: "babel-loader",
         include: /src/,
@@ -27,15 +31,20 @@ module.exports = {
       },
       {
         test: /(\.css$)/,
-        use: [{
-            loader: "style-loader"
-          },
+        use: [
+          isProduction
+            ? {
+                loader: MiniCssExtractPlugin.loader
+              }
+            : {
+                loader: "style-loader"
+              },
           {
             loader: "css-loader"
+          },
+          {
+            loader: "postcss-loader"
           }
-          // {
-          //   loader: 'postcss-loader'
-          // }
         ]
       }
     ]
@@ -68,10 +77,27 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "template.html"
-    })
+    }),
     // /* 动态链接库引用 */
     // new DllReferencePlugin({
     //   manifest: require(`${__dirname}/dll/react.manifest.json`)
     // })
+    new MiniCssExtractPlugin({
+      filename: "[name].[contenthash].css",
+      chunkFilename: "[id].[contenthash:8].css"
+    }),
+    new OptimizeCssAssetsPlugin({
+      cssProcessorPluginOptions: {
+        preset: [
+          "default",
+          {
+            discardComments: {
+              removeAll: true
+            }
+          }
+        ]
+      },
+      canPrint: true
+    })
   ]
 };
