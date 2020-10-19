@@ -35,11 +35,11 @@ module.exports = {
         use: [
           isProduction
             ? {
-                loader: MiniCssExtractPlugin.loader
-              }
+              loader: MiniCssExtractPlugin.loader
+            }
             : {
-                loader: "style-loader"
-              },
+              loader: "style-loader"
+            },
           {
             loader: "css-loader"
           },
@@ -47,6 +47,25 @@ module.exports = {
             loader: "postcss-loader"
           }
         ]
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf)$/,
+        loader: "url-loader?limit=100000"
+      },
+      {
+        test: /\.(png|jp(e*)g|gif)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "images/[hash]-[name].[ext]"
+            }
+          }
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"]
       }
     ]
   },
