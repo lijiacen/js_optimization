@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <style>
+      .wrapper {
+        display: flex;
+        flex-flow: column;
+      }
+      .link {
+        width: 150px;
+        height: 150px;
+      }
+      .link img {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+    <!--增加图片2.jpg加载优先级，使之在1.jpg之前加载-->
+    <link rel="preload" href="2.jpg" as="image" />
+    <link rel="prefetch" href="3.jpg" />
+  </head>
+
+  <body>
+    <div class="wrapper" id="wrapper">
+      <a class="link"><img src="./1.jpg" /></a>
+      <a class="link"><img src="./2.jpg" /></a>
+    </div>
+  </body>
+  <script>
+    setTimeout(() => {
+      // let a = document.createElement("a");
+      // a.className = "link";
+      let img = document.createElement("img");
+      img.src = "3.jpg";
+      // a.appendChild(img);
+      document.getElementById("wrapper").appendChild(img);
+    }, 15000);
+  </script>
+</html>
